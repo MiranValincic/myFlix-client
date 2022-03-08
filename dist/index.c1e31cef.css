@@ -1,0 +1,45 @@
+/** @format */
+.movie-poster {
+  margin-top: 5em;
+  display: flex;
+  justify-content: center;
+}
+
+.movie-title {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+#back-button {
+  font-size: 18px;
+  background-color: #212529;
+  color: white;
+  border: none;
+  margin-top: 20px;
+  padding: 6px;
+  border-radius: 20%;
+}
+
+#back-button:hover {
+  transform: scale(1.1);
+}
+/** @format */
+#button-submit {
+  margin-top: 10px;
+}
+
+#button-submit:hover {
+  transform: scale(1.1);
+}
+/** @format */
+.card.body {
+  padding: 5rem;
+}
+
+#button-register {
+  margin-top: 10px;
+}
+.my-flix {
+  color: steelblue;
+}
+/*# sourceMappingURL=index.c1e31cef.css.map */

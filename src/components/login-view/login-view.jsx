@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from "prop-types";
+import './login-view.scss'
+import { Form, Button,Container,Row,Col, Card,CardGroup } from 'react-bootstrap';
 
 export function LoginView(props) {
   const [ name, setName ] = useState('');
@@ -15,23 +17,35 @@ export function LoginView(props) {
   };
 
   return (
-    <form>
-      <label>
-        Name:
-        <input type="text" value={name} onChange={e => setName(e.target.value)} />
-      </label>
-      <label>
-        Password:
-        <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-      </label>
-      <button type="submit" onClick={handleSubmit}>Submit</button>
-    </form>
+    <Container>
+    <Row>
+      <Col>
+      <CardGroup>
+            <Card>
+                <Card.Body>
+                <Card.Title>Please Log in</Card.Title>
+    <Form>
+      <Form.Group controlId="formUsername">
+        <Form.Label>Username:</Form.Label>
+        <Form.Control type="text" onChange={e => setName(e.target.value)} />
+      </Form.Group>
+
+      <Form.Group controlId="formPassword">
+        <Form.Label>Password:</Form.Label>
+        <Form.Control type="password" onChange={e => setPassword(e.target.value)} />
+      </Form.Group> 
+      <Button id='button-submit' variant="primary" type="submit" onClick={handleSubmit}>
+        Submit
+      </Button>
+    </Form>
+    </Card.Body>
+            </Card>
+        </CardGroup>
+    </Col>
+      </Row>
+    </Container>
   );
 }
 LoginView.propTypes = {
-    user: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      password: PropTypes.string.isRequired,
-    }),
     onLoggedIn: PropTypes.func.isRequired,
   };
