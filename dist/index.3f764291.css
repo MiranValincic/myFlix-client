@@ -1,4 +1,12 @@
 /** @format */
+#card {
+  border: none;
+}
+
+#open {
+  color: black;
+}
+/** @format */
 .movie-poster {
   margin-top: 5em;
   display: flex;
@@ -56,4 +64,4 @@
 .my-flix {
   color: steelblue;
 }
-/*# sourceMappingURL=index.c1e31cef.css.map */
+/*# sourceMappingURL=index.3f764291.css.map */

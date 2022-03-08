@@ -1,9 +1,8 @@
 /** @format */
-
-.card.body {
-  padding: 5rem;
+.card-group > .card:only-child {
+  border: none;
 }
-
 #button-register {
   margin-top: 10px;
+  background-color: black;
 }
