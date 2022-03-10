@@ -10,10 +10,10 @@ export class ProfileView extends React.Component {
     super();
 
     this.state = {
-      Name: null,
-      Password: null,
-      Email: null,
-      Born: null,
+      Name: '',
+      Password:'',
+      Email: '',
+      Born: '',
       FavoriteMovies: [],
     };
   }
@@ -76,7 +76,7 @@ export class ProfileView extends React.Component {
 
     axios
       .delete(
-        `https://miran-flix.herokuapp.com/users/${Name}/movies/${movie._id}`,
+        `https://miran-flix.herokuapp.com/users/${Name}/favorites/${movie._id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -158,11 +158,7 @@ export class ProfileView extends React.Component {
 
   render() {
     const { movies, onBackClick } = this.props;
-    const { FavoriteMovies, Name, Email, Born } = this.state;
-
-    if (!Name) {
-      return null;
-    }
+    const { FavoriteMovies, Name, Email, Born, Password } = this.state;
 
     return (
       <Container className="profile-view" align="center">
@@ -187,10 +183,10 @@ export class ProfileView extends React.Component {
                     <Form.Label>Name</Form.Label>
                     <Form.Control
                       type="text"
-                      name="Name"
+                      name="name"
                       placeholder="New Username"
                       value={Name}
-                      onChange={(e) => this.setUsername(e.target.value)}
+                      onChange={(e) => this.setName(e.target.value)}
                       required
                     />
                   </Form.Group>
@@ -198,10 +194,10 @@ export class ProfileView extends React.Component {
                   <Form.Group>
                     <Form.Label>Password</Form.Label>
                     <Form.Control
-                      type="password"
+                      type="Password"
                       name="Password"
                       placeholder="New Password"
-                      value={""}
+                      value={Password}
                       onChange={(e) => this.setPassword(e.target.value)}
                       required
                     />
@@ -222,7 +218,7 @@ export class ProfileView extends React.Component {
                   <Form.Group>
                     <Form.Label>Birthday</Form.Label>
                     <Form.Control
-                      type="date"
+                      type="date, 'yyyy-MM-dd'"
                       name="Birthday"
                       value={Born}
                       onChange={(e) => this.setBirthday(e.target.value)}

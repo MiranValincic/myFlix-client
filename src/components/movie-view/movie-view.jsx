@@ -6,6 +6,27 @@ import { Link } from "react-router-dom";
 import { Container, Row, Col, Button } from "react-bootstrap";
 
 export class MovieView extends React.Component {
+  addFavourite = (event, movie) => {
+    event.preventDefault();
+    const Name = localStorage.getItem('user');
+    const token = localStorage.getItem('token');
+
+    axios
+      .post(
+        `https://miran-flix.herokuapp.com/users/${Name}/favorites/${movie._id}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then(response => {
+        console.log(response);
+        alert('Movie added to favourites');
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
   render() {
     const { movie, onBackClick } = this.props;
 
@@ -41,6 +62,13 @@ export class MovieView extends React.Component {
               <Button variant="outline-light" onClick={() => onBackClick(null)}>
                 Back
               </Button>
+              <Button
+          variant="secondary"
+          value={movie._id}
+          onClick={e => this.addFavourite(e, movie)}
+        >
+          Add to favourites
+        </Button>
             </div>
           </Col>
         </Row>

@@ -76,7 +76,7 @@ export function LoginView(props) {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                     />
-                    {usernameErr && <p>{usernameErr}</p>}
+                    {usernameErr && <p id="error">{usernameErr}</p>}
                   </Form.Group>
 
                   <Form.Group controlId="formPassword">
@@ -87,7 +87,7 @@ export function LoginView(props) {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                     />
-                    {passwordErr && <p>{passwordErr}</p>}
+                    {passwordErr && <p id="error">{passwordErr}</p>}
                   </Form.Group>
                   <Button
                     id="button-submit"

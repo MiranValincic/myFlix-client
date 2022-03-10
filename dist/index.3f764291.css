@@ -1,6 +1,18 @@
 /** @format */
 #card {
-  border: none;
+  border: 1px solid black;
+  padding: 3px;
+  height: 35em;
+  width: 230px;
+}
+
+#card img {
+  height: 380px;
+}
+
+#card-collum {
+  display: flex;
+  justify-content: center;
 }
 
 #open {
@@ -47,6 +59,10 @@
 #button-register {
   margin-top: 10px;
   background-color: black;
+}
+
+#error {
+  color: #d30202;
 }
 
 /** @format */

@@ -79,7 +79,7 @@ export class MainView extends React.Component {
       <Router>
         <NavbarView user={user} />
         <Container>
-          <Row className="main-view justify-content-md-center">
+          <Row className="main-view justify-content-center">
             <Route
               exact
               path="/"
@@ -91,7 +91,7 @@ export class MainView extends React.Component {
                 return (
                   <>
                     {movies.map((movie) => (
-                      <Col md={3} key={movie._id}>
+                      <Col md={6} lg={4} xl={3} key={movie._id}>
                         <MovieCard movie={movie} onMovieClick={() => {}} />
                       </Col>
                     ))}

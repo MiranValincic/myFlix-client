@@ -38,14 +38,14 @@ export function RegistrationView(props) {
       setPasswordErr("Password required");
       isReq = false;
     } else if (password.length < 8) {
-      setPassword("Password must be at least 8 characters long");
+      setPasswordErr("Password must be at least 8 characters long");
       isReq = false;
     }
     if (!email) {
       setEmailErr("Email required");
       isReq = false;
     } else if (email.indexOf("@") === -1) {
-      setEmail("Email must be valid");
+      setEmailErr("Email must be valid");
       isReq = false;
     }
 
@@ -94,8 +94,8 @@ export function RegistrationView(props) {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       required
-                    />
-                    {usernameErr && <p>{usernameErr}</p>}
+                      /> {''}
+                      {usernameErr && <p id='error'>{usernameErr}</p>}
                   </Form.Group>
                   <Form.Group>
                     <Form.Label>Password:</Form.Label>
@@ -107,7 +107,7 @@ export function RegistrationView(props) {
                       minLength="8"
                       placeholder="Min 8 characters "
                     />
-                    {passwordErr && <p>{passwordErr}</p>}
+                    {passwordErr && <p id='error' >{passwordErr}</p>}
                   </Form.Group>
                   <Form.Group>
                     <Form.Label>Email:</Form.Label>
@@ -117,12 +117,12 @@ export function RegistrationView(props) {
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter email"
                     />
-                    {emailErr && <p>{emailErr}</p>}
+                    {emailErr && <p id='error'>{emailErr}</p>}
                   </Form.Group>
                   <Form.Group>
                     <Form.Label>Born:</Form.Label>
                     <Form.Control
-                      type="birthday"
+                      type="date, 'yyyy-mm-dd'"
                       value={born}
                       onChange={(e) => setBirthday(e.target.value)}
                       placeholder="Enter your birthday"

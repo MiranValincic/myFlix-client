@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
+import { Container,Row ,Col,Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import './movie-card.scss'
 
@@ -11,16 +10,22 @@ export class MovieCard extends React.Component {
     const { movie } = this.props;
 
     return (
-      <Card id="card">
+      <Container>
+      <Row>
+        <Col id="card-collum"> 
+      <Card id="card" >
         <Card.Img variant="top" src={movie.ImagePath} />
         <Card.Body>
           <Card.Title>{movie.Title}</Card.Title>
-          <Card.Text>{movie.Description}</Card.Text>
+          <Card.Text className="text-truncate">{movie.Description}</Card.Text>
           <Link to={`/movies/${movie._id}`}>
             <Button id="open" variant="link">Open</Button>
           </Link>
         </Card.Body>
       </Card>
+        </Col>
+      </Row>
+      </Container>
     );
   }
 }
