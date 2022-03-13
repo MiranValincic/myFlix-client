@@ -141,7 +141,7 @@ export class MainView extends React.Component {
                 }
 
                 return (
-                  <Col md={8}>
+                  <Col id="card" md={8}>
                     <MovieView
                       movie={movies.find((m) => m._id === match.params.movieId)}
                       onBackClick={() => history.goBack()}

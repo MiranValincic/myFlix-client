@@ -3,7 +3,8 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import "./profile-view.scss";
 import { Link } from "react-router-dom";
-import { Container, Card, Button, Row, Col, Form } from "react-bootstrap";
+import { Container, Card, Button, Row, Col, Form, FormCheck } from "react-bootstrap";
+
 
 export class ProfileView extends React.Component {
   constructor() {
@@ -15,9 +16,10 @@ export class ProfileView extends React.Component {
       Email: '',
       Born: '',
       FavoriteMovies: [],
+      validated: false
     };
   }
-
+  
   componentDidMount() {
     const accessToken = localStorage.getItem("token");
     this.getUser(accessToken);
@@ -37,7 +39,15 @@ export class ProfileView extends React.Component {
     e.preventDefault();
     const Name = localStorage.getItem("user");
     const token = localStorage.getItem("token");
+    const form = e.currentTarget;
 
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+      this.setState({validated: true})
+      } else {
+      e.preventDefault();
+      this.setState({ validated: true });
     axios
       .put(
         `https://miran-flix.herokuapp.com/users/${Name}`,
@@ -60,12 +70,13 @@ export class ProfileView extends React.Component {
         });
 
         localStorage.setItem("user", this.state.Name);
-        alert("Profile updated");
+        
         window.open("/profile", "_self");
       })
       .catch(function (error) {
         console.log(error);
       });
+    }
   };
 
   // Delete a movie from FavoriteMovies list
@@ -140,7 +151,7 @@ export class ProfileView extends React.Component {
 
   setPassword(value) {
     this.setState({
-      Password: value,
+      Password: value
     });
   }
 
@@ -167,17 +178,17 @@ export class ProfileView extends React.Component {
             <Card className="update-profile">
               <Card.Body>
                 <Card.Title>Profile</Card.Title>
-                <Form
-                  className="update-form"
-                  onSubmit={(e) =>
-                    this.editUser(
-                      e,
-                      this.Name,
-                      this.Password,
-                      this.Email,
-                      this.Born
-                    )
-                  }
+                <Form noValidate validated={this.state.validated}
+                  // className="update-form"
+                  // onSubmit={(e) =>
+                  //   this.editUser(
+                  //     e,
+                  //     this.Name,
+                  //     this.Password,
+                  //     this.Email,
+                  //     this.Born
+                  //   )
+                  // }
                 >
                   <Form.Group>
                     <Form.Label>Name</Form.Label>
@@ -188,7 +199,11 @@ export class ProfileView extends React.Component {
                       value={Name}
                       onChange={(e) => this.setName(e.target.value)}
                       required
+                      minLength={2}
                     />
+                    <Form.Control.Feedback type="invalid">
+                      Please use valid name
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   <Form.Group>
@@ -200,7 +215,11 @@ export class ProfileView extends React.Component {
                       value={Password}
                       onChange={(e) => this.setPassword(e.target.value)}
                       required
+                      minLength="8"
                     />
+                    <Form.Control.Feedback type="invalid">
+                    Password must be at least 8 characters long
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   <Form.Group>
@@ -218,7 +237,7 @@ export class ProfileView extends React.Component {
                   <Form.Group>
                     <Form.Label>Birthday</Form.Label>
                     <Form.Control
-                      type="date, 'yyyy-MM-dd'"
+                      type="date, yyyy-mm-dd"
                       name="Birthday"
                       value={Born}
                       onChange={(e) => this.setBirthday(e.target.value)}

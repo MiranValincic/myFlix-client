@@ -17,8 +17,10 @@ export function LoginView(props) {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
-  const [usernameErr, setUsernameErr] = useState("");
+  const[usernameErr, setUsernameErr] = useState("");
   const [passwordErr, setPasswordErr] = useState("");
+  const [credentialErr,setCredentialErr] = useState("");
+
 
   const validate = () => {
     let isReq = true;
@@ -33,7 +35,7 @@ export function LoginView(props) {
       setPasswordErr("Password Required");
       isReq = false;
     } else if (password.length < 8) {
-      setPassword("Password must be 8 characters long");
+      setPasswordErr("Password must be 8 characters long");
       isReq = false;
     }
 
@@ -47,14 +49,14 @@ export function LoginView(props) {
       axios
         .post("https://miran-flix.herokuapp.com/login", {
           Name: name,
-          Password: password,
+          Password: password
         })
         .then((response) => {
           const data = response.data;
           props.onLoggedIn(data);
         })
         .catch((e) => {
-          console.log("no such user");
+          setCredentialErr('Wrong user credentials')          
         });
     }
   };
@@ -75,9 +77,10 @@ export function LoginView(props) {
                       placeholder="Enter username"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                    />
-                    {usernameErr && <p id="error">{usernameErr}</p>}
-                  </Form.Group>
+                      />
+                      {usernameErr && <p id="error">{usernameErr}</p>}
+                      {credentialErr && <p id="error">{credentialErr}</p>}
+                    </Form.Group>
 
                   <Form.Group controlId="formPassword">
                     <Form.Label>Password:</Form.Label>
@@ -88,6 +91,7 @@ export function LoginView(props) {
                       onChange={(e) => setPassword(e.target.value)}
                     />
                     {passwordErr && <p id="error">{passwordErr}</p>}
+                    {credentialErr && <p id="error">{credentialErr}</p>}
                   </Form.Group>
                   <Button
                     id="button-submit"

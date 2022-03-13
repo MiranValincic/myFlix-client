@@ -1,18 +1,17 @@
 /** @format */
 
-#card {
-  border: 1px solid black;
-  padding: 3px;
-  height: 35em;
-  width: 230px;
-}
 #card img {
   height: 380px;
 }
 
-#card-collum {
+#card {
   display: flex;
   justify-content: center;
+  border: 1px solid black;
+  display: flex;
+  height: 35em;
+  width: 100%;
+  padding: 0;
 }
 #open {
   color: black;

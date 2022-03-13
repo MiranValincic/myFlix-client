@@ -1,5 +1,79 @@
-.card.body {
-  padding: 5rem;
+/** @format */
+.card-group > .card:only-child {
+  border: none;
+}
+
+#button-register {
+  margin-top: 10px;
+  background-color: black;
+}
+
+#error {
+  color: #d30202;
+}
+/** @format */
+#button-submit {
+  margin-top: 10px;
+}
+
+#button-submit:hover {
+  transform: scale(1.1);
+}
+/** @format */
+#card img {
+  height: 380px;
+}
+
+#card {
+  display: flex;
+  justify-content: center;
+  border: 1px solid black;
+  display: flex;
+  height: 35em;
+  width: 100%;
+  padding: 0;
+}
+
+#open {
+  color: black;
+}
+/** @format */
+.movie-poster {
+  margin-top: 5em;
+  display: flex;
+  justify-content: center;
+}
+
+.movie-title {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+#back-button {
+  font-size: 18px;
+  background-color: #212529;
+  color: white;
+  border: none;
+  margin-top: 20px;
+  padding: 6px;
+  border-radius: 20%;
+}
+
+#back-button:hover {
+  transform: scale(1.1);
+}
+
+/** @format */
+* {
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+/** @format */
+* {
+  box-sizing: border-box;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  background-color: steelblue;
 }
 .my-flix {
   color: steelblue;

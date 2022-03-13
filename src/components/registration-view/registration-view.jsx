@@ -23,6 +23,7 @@ export function RegistrationView(props) {
   const [usernameErr, setUsernameErr] = useState("");
   const [passwordErr, setPasswordErr] = useState("");
   const [emailErr, setEmailErr] = useState("");
+  const [badUsername, setBadUsername] = useState("");
 
   const validate = () => {
     let isReq = true;
@@ -71,8 +72,7 @@ export function RegistrationView(props) {
           window.open("/", "_self");
         })
         .catch((response) => {
-          console.error(response);
-          alert("Unable to register");
+          setBadUsername('User already exist');
         });
     }
   };
@@ -94,8 +94,9 @@ export function RegistrationView(props) {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       required
-                      /> {''}
+                      />
                       {usernameErr && <p id='error'>{usernameErr}</p>}
+                      {badUsername && <p id='error'>{badUsername}</p>}
                   </Form.Group>
                   <Form.Group>
                     <Form.Label>Password:</Form.Label>
@@ -122,7 +123,7 @@ export function RegistrationView(props) {
                   <Form.Group>
                     <Form.Label>Born:</Form.Label>
                     <Form.Control
-                      type="date, 'yyyy-mm-dd'"
+                      type="date, yyyy-mm-dd"
                       value={born}
                       onChange={(e) => setBirthday(e.target.value)}
                       placeholder="Enter your birthday"

@@ -10,9 +10,9 @@ export class MovieCard extends React.Component {
     const { movie } = this.props;
 
     return (
-      <Container>
+      
       <Row>
-        <Col id="card-collum"> 
+        <Col> 
       <Card id="card" >
         <Card.Img variant="top" src={movie.ImagePath} />
         <Card.Body>
@@ -25,7 +25,6 @@ export class MovieCard extends React.Component {
       </Card>
         </Col>
       </Row>
-      </Container>
     );
   }
 }
