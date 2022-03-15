@@ -3,15 +3,24 @@ import axios from "axios";
 import ReactDOM from "react-dom";
 import MainView from "./components/main-view/main-view";
 import { Container, Navbar, Nav } from "react-bootstrap";
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import moviesApp from './reducers/reducers';
+import { devToolsEnhancer } from 'redux-devtools-extension';
 
 // Import statement to indicate that you need to bundle `./index.scss`
 import "./index.scss";
+const store = createStore(moviesApp, devToolsEnhancer());
 
 // Main component (will eventually use all the others)
 class MyFlixApplication extends React.Component {
   render() {
     return (
-      <MainView />
+      <Provider store={store}>
+      <Container>
+        <MainView />
+      </Container>
+    </Provider>
     );
   }
 }

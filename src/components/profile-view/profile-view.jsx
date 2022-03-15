@@ -3,23 +3,30 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import "./profile-view.scss";
 import { Link } from "react-router-dom";
-import { Container, Card, Button, Row, Col, Form, FormCheck } from "react-bootstrap";
-
+import {
+  Container,
+  Card,
+  Button,
+  Row,
+  Col,
+  Form,
+  FormCheck,
+} from "react-bootstrap";
 
 export class ProfileView extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      Name: '',
-      Password:'',
-      Email: '',
-      Born: '',
+      Name: "",
+      Password: "",
+      Email: "",
+      Born: "",
       FavoriteMovies: [],
-      validated: false
+      validated: false,
     };
   }
-  
+
   componentDidMount() {
     const accessToken = localStorage.getItem("token");
     this.getUser(accessToken);
@@ -44,38 +51,38 @@ export class ProfileView extends React.Component {
     if (form.checkValidity() === false) {
       e.preventDefault();
       e.stopPropagation();
-      this.setState({validated: true})
-      } else {
+      this.setState({ validated: true });
+    } else {
       e.preventDefault();
       this.setState({ validated: true });
-    axios
-      .put(
-        `https://miran-flix.herokuapp.com/users/${Name}`,
-        {
-          Name: this.state.Name,
-          Password: this.state.Password,
-          Email: this.state.Email,
-          Born: this.state.Born,
-        },
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      )
-      .then((response) => {
-        this.setState({
-          Name: response.data.Name,
-          Password: response.data.Password,
-          Email: response.data.Email,
-          Born: response.data.Born,
-        });
+      axios
+        .put(
+          `https://miran-flix.herokuapp.com/users/${Name}`,
+          {
+            Name: this.state.Name,
+            Password: this.state.Password,
+            Email: this.state.Email,
+            Born: this.state.Born,
+          },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        )
+        .then((response) => {
+          this.setState({
+            Name: response.data.Name,
+            Password: response.data.Password,
+            Email: response.data.Email,
+            Born: response.data.Born,
+          });
 
-        localStorage.setItem("user", this.state.Name);
-        
-        window.open("/profile", "_self");
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+          localStorage.setItem("user", this.state.Name);
+
+          window.open("/profile", "_self");
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
   };
 
@@ -151,7 +158,7 @@ export class ProfileView extends React.Component {
 
   setPassword(value) {
     this.setState({
-      Password: value
+      Password: value,
     });
   }
 
@@ -178,17 +185,19 @@ export class ProfileView extends React.Component {
             <Card className="update-profile">
               <Card.Body>
                 <Card.Title>Profile</Card.Title>
-                <Form noValidate validated={this.state.validated}
-                  // className="update-form"
-                  // onSubmit={(e) =>
-                  //   this.editUser(
-                  //     e,
-                  //     this.Name,
-                  //     this.Password,
-                  //     this.Email,
-                  //     this.Born
-                  //   )
-                  // }
+                <Form
+                  noValidate
+                  validated={this.state.validated}
+                  className="update-form"
+                  onSubmit={(e) =>
+                    this.editUser(
+                      e,
+                      this.Name,
+                      this.Password,
+                      this.Email,
+                      this.Born
+                    )
+                  }
                 >
                   <Form.Group>
                     <Form.Label>Name</Form.Label>
@@ -196,7 +205,6 @@ export class ProfileView extends React.Component {
                       type="text"
                       name="name"
                       placeholder="New Username"
-                      value={Name}
                       onChange={(e) => this.setName(e.target.value)}
                       required
                       minLength={2}
@@ -212,13 +220,12 @@ export class ProfileView extends React.Component {
                       type="Password"
                       name="Password"
                       placeholder="New Password"
-                      value={Password}
                       onChange={(e) => this.setPassword(e.target.value)}
                       required
                       minLength="8"
                     />
                     <Form.Control.Feedback type="invalid">
-                    Password must be at least 8 characters long
+                      Password must be at least 8 characters long
                     </Form.Control.Feedback>
                   </Form.Group>
 
@@ -228,7 +235,6 @@ export class ProfileView extends React.Component {
                       type="email"
                       name="Email"
                       placeholder="Enter Email"
-                      value={Email}
                       onChange={(e) => this.setEmail(e.target.value)}
                       required
                     />
@@ -237,9 +243,8 @@ export class ProfileView extends React.Component {
                   <Form.Group>
                     <Form.Label>Birthday</Form.Label>
                     <Form.Control
-                      type="date, yyyy-mm-dd"
+                      type="date"
                       name="Birthday"
-                      value={Born}
                       onChange={(e) => this.setBirthday(e.target.value)}
                     />
                   </Form.Group>
@@ -315,7 +320,7 @@ export class ProfileView extends React.Component {
         </Row>
         <div className="backButton">
           <Button
-          id="open"
+            id="open"
             variant="outline-primary"
             onClick={() => {
               onBackClick(null);
