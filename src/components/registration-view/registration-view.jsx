@@ -23,6 +23,7 @@ export function RegistrationView(props) {
   const [usernameErr, setUsernameErr] = useState("");
   const [passwordErr, setPasswordErr] = useState("");
   const [emailErr, setEmailErr] = useState("");
+  const [bornErr, setBirthdayErr] = useState("");
   const [badUsername, setBadUsername] = useState("");
 
   const validate = () => {
@@ -47,6 +48,10 @@ export function RegistrationView(props) {
       isReq = false;
     } else if (email.indexOf("@") === -1) {
       setEmailErr("Email must be valid");
+      isReq = false;
+    }
+    if(!born){
+      setBirthdayErr('Please enter birthdate')
       isReq = false;
     }
 
@@ -123,11 +128,12 @@ export function RegistrationView(props) {
                   <Form.Group>
                     <Form.Label>Born:</Form.Label>
                     <Form.Control
-                      type="date, yyyy-mm-dd"
+                      type="date"
                       value={born}
                       onChange={(e) => setBirthday(e.target.value)}
                       placeholder="Enter your birthday"
                     />
+                    {bornErr && <p id='error'>{bornErr}</p>}
                   </Form.Group>
 
                   <Button

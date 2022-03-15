@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "./movie-view.scss";
 import axios from "axios";
@@ -8,8 +8,9 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 export class MovieView extends React.Component {
   addFavourite = (event, movie) => {
     event.preventDefault();
-    const Name = localStorage.getItem('user');
-    const token = localStorage.getItem('token');
+    const Name = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
+   
 
     axios
       .post(
@@ -19,14 +20,15 @@ export class MovieView extends React.Component {
           headers: { Authorization: `Bearer ${token}` },
         }
       )
-      .then(response => {
+      .then((response) => {
         console.log(response);
-        alert('Movie added to favourites');
+        alert("Movie added to favourites");
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   };
+ 
   render() {
     const { movie, onBackClick } = this.props;
 
@@ -49,13 +51,17 @@ export class MovieView extends React.Component {
               <div className="movie-genre">
                 <span className="label">Genre: </span>
                 <Link to={`/genres/${movie.Genre.Name}`}>
-                  <Button id="open" variant="link">{movie.Genre.Name}</Button>
+                  <Button id="open" variant="link">
+                    {movie.Genre.Name}
+                  </Button>
                 </Link>
               </div>
               <div className="movie-director">
                 <span className="label">Director: </span>
                 <Link to={`/directors/${movie.Director.Name}`}>
-                  <Button id="open" variant="link">{movie.Director.Name}</Button>
+                  <Button id="open" variant="link">
+                    {movie.Director.Name}
+                  </Button>
                 </Link>
               </div>
 
@@ -63,12 +69,14 @@ export class MovieView extends React.Component {
                 Back
               </Button>
               <Button
-          variant="secondary"
-          value={movie._id}
-          onClick={e => this.addFavourite(e, movie)}
-        >
-          Add to favourites
-        </Button>
+                variant="secondary"
+                value={movie._id}
+                onClick={(e) => {
+                  this.addFavourite(e, movie);
+                }}
+              >
+                Add to favourites
+              </Button>
             </div>
           </Col>
         </Row>

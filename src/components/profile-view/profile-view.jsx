@@ -179,16 +179,16 @@ export class ProfileView extends React.Component {
               <Card.Body>
                 <Card.Title>Profile</Card.Title>
                 <Form noValidate validated={this.state.validated}
-                  // className="update-form"
-                  // onSubmit={(e) =>
-                  //   this.editUser(
-                  //     e,
-                  //     this.Name,
-                  //     this.Password,
-                  //     this.Email,
-                  //     this.Born
-                  //   )
-                  // }
+                  className="update-form"
+                  onSubmit={(e) =>
+                    this.editUser(
+                      e,
+                      this.Name,
+                      this.Password,
+                      this.Email,
+                      this.Born
+                    )
+                  }
                 >
                   <Form.Group>
                     <Form.Label>Name</Form.Label>
@@ -196,7 +196,6 @@ export class ProfileView extends React.Component {
                       type="text"
                       name="name"
                       placeholder="New Username"
-                      value={Name}
                       onChange={(e) => this.setName(e.target.value)}
                       required
                       minLength={2}
@@ -212,8 +211,7 @@ export class ProfileView extends React.Component {
                       type="Password"
                       name="Password"
                       placeholder="New Password"
-                      value={Password}
-                      onChange={(e) => this.setPassword(e.target.value)}
+                     onChange={(e) => this.setPassword(e.target.value)}
                       required
                       minLength="8"
                     />
@@ -228,8 +226,7 @@ export class ProfileView extends React.Component {
                       type="email"
                       name="Email"
                       placeholder="Enter Email"
-                      value={Email}
-                      onChange={(e) => this.setEmail(e.target.value)}
+                     onChange={(e) => this.setEmail(e.target.value)}
                       required
                     />
                   </Form.Group>
@@ -237,9 +234,9 @@ export class ProfileView extends React.Component {
                   <Form.Group>
                     <Form.Label>Birthday</Form.Label>
                     <Form.Control
-                      type="date, yyyy-mm-dd"
+                      type="date"
                       name="Birthday"
-                      value={Born}
+                      placeholder="Enter new birthday"
                       onChange={(e) => this.setBirthday(e.target.value)}
                     />
                   </Form.Group>
