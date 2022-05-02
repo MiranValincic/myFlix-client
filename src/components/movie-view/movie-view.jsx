@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Container, Row, Col, Button } from "react-bootstrap";
 
 export class MovieView extends React.Component {
+  
   addFavourite = (event, movie) => {
     event.preventDefault();
     const Name = localStorage.getItem("user");
@@ -28,10 +29,13 @@ export class MovieView extends React.Component {
         console.log(error);
       });
   };
+
+
+
  
   render() {
     const { movie, onBackClick } = this.props;
-
+   
     return (
       <Container>
         <Row>
@@ -68,7 +72,7 @@ export class MovieView extends React.Component {
               <Button variant="outline-light" onClick={() => onBackClick(null)}>
                 Back
               </Button>
-              <Button
+              <Button 
                 variant="secondary"
                 value={movie._id}
                 onClick={(e) => {
