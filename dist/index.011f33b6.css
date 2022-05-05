@@ -20,24 +20,6 @@
   transform: scale(1.1);
 }
 /** @format */
-#card img {
-  height: 380px;
-}
-
-#card {
-  display: flex;
-  justify-content: center;
-  border: 1px solid black;
-  display: flex;
-  height: 35em;
-  width: 100%;
-  padding: 0;
-}
-
-#open {
-  color: black;
-}
-/** @format */
 .movie-poster {
   margin-top: 5em;
   display: flex;
@@ -62,7 +44,16 @@
 #back-button:hover {
   transform: scale(1.1);
 }
+.favorite-movie {
+  width: 260px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
 
+.favorite-container {
+  display: flex;
+  justify-content: center;
+}
 /** @format */
 * {
   box-sizing: border-box;
@@ -75,6 +66,25 @@
   font-family: Georgia, "Times New Roman", Times, serif;
   background-color: steelblue;
 }
+/** @format */
+#card img {
+  height: 380px;
+}
+
+#card {
+  display: flex;
+  justify-content: center;
+  border: 1px solid black;
+  display: flex;
+  height: 35em;
+  width: 100%;
+  padding: 0;
+}
+
+#open {
+  color: black;
+}
+/** @format */
 .my-flix {
   color: steelblue;
 }

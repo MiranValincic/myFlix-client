@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "./movie-view.scss";
 import axios from "axios";
@@ -21,7 +21,6 @@ export class MovieView extends React.Component {
       )
       .then(response => {
         console.log(response);
-        alert('Movie added to favourites');
       })
       .catch(error => {
         console.log(error);
