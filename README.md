@@ -1,7 +1,7 @@
 # myFlix-client
 
 Purpose <br>
-This is the client-side for the application K-Flix based on its existing server-side code (REST API and database). <br>
+This is the client-side for the application myFlixe based on its existing server-side code (REST API and database). <br>
 
 Built with<br>
 MERN tech stack<br>
