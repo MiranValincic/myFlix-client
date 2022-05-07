@@ -3,6 +3,8 @@
 Purpose <br>
 This is the client-side for the application myFlixe based on its existing server-side code (REST API and database). <br>
 
+![alt text](myflix.png)
+
 Built with<br>
 MERN tech stack<br>
 
